@@ -45,21 +45,5 @@ public class Deck {
     public boolean isEmpty(){
         return nextCard>= cards.length;
     }
-    public static void main(String[] args){
-        Deck deck = new Deck();
-
-        System.out.println("before shuffle:");
-        for (int i = 0; i < 55;i++){
-            System.out.println(deck.drawCard() + " ");
-        }
-
-        deck = new Deck();
-        deck.shuffle();
-        
-        System.out.println("After shuffle:");
-        for (int i = 0; i < 55; i++){
-            System.out.println(deck.drawCard() + " ");
-        }
-    }
 
 }
