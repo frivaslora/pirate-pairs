@@ -7,8 +7,36 @@ public class Player {
     private int handCount = 0;
     private boolean eliminated = false;
 
-    public Player(int id){
-        this.id = id
+    public Player(int playerId){
+        id = playerId;
+    }
+
+    public int getId(){
+        return id;
     }
     
-}
+    public int getScore(){
+        return score;
+    }
+
+    public boolean isEliminated(){
+        return eliminated;
+    }
+
+    public void eliminate(){
+        eliminated = true;
+    }
+
+    public void addScore(int points){
+        score = score + points;
+    }
+
+    public boolean hasCards(){
+        if (handCount > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+}   
+
