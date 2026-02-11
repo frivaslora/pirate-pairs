@@ -38,5 +38,37 @@ public class Player {
             return false;
         }
     }
+
+    public void addCard(int card){
+        hand[handCount] = card;
+        handCount = handCount + 1;
+    }
+    public boolean isPair(int card){
+        for (int i = 0; i <handCount; i++){
+            if (hand[i] == card){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    public int lowestCard(){
+        int smallest = hand[0];
+        for (int i = 1; i < handCount; i++){
+            if (hand[i] < smallest){
+                smallest = hand[i];
+            }
+        }
+
+        return smallest;
+    }
+
+    public void clearHand(Deck deck){
+        for (int i = 0; i < handCount; i++){
+            deck.addToDiscard(hand[i]);
+        }
+        handCount = 0;
+    }
+    
 }   
 
