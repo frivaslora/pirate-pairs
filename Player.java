@@ -47,10 +47,10 @@ public class Player {
         for (int i = 0; i <handCount; i++){
             if (hand[i] == card){
                 return true;
-            } else {
-                return false;
-            }
+            } 
         }
+
+        return false;
     }
     public int lowestCard(){
         int smallest = hand[0];
@@ -69,6 +69,62 @@ public class Player {
         }
         handCount = 0;
     }
+
+    public boolean shouldFold(int lowestVisible){
+        if(handCount == 0){
+            return false;
+        }
+        int myLowest = lowestCard();
+        if (lowestVisible < myLowest){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String showHand(){
+        String text = "[";
+        for (int i = 0; i <handCount; i++){
+            text = text + hand[i];
+
+            if(i < handCount - 1){
+                text = text + ",";
+            }
+        }
+        text = text + "]";
+        return text;
+    }
+    /* 
+    public static void main(String[] args){
+       Player p = new Player(1);
+
+        p.addCard(3);
+        p.addCard(5);
+        p.addCard(8);
+
+        System.out.println("Player ID: " + p.getId());
+        System.out.println("Score: " + p.getScore());
+        System.out.println("hand: " + p.showHand());
+
+        System.out.println(" lowest card: " +p.lowestCard());
+        
+        System.out.println("is 5 a pair:? "+ p.isPair(5));
+        System.out.println("is 7 a pair: " + p.isPair(7));
+
+        System.out.println("has cards? " +p.hasCards());
+
+        System.out.println("should fold if lowest visible is 4? " + p.shouldFold(4));
+
+        p.addScore(10);
+        System.out.println("New score: " + p.getScore());
+        p.eliminate();
+        System.out.println("is eliminated " + p.isEliminated());
+
+        Deck testDeck = new Deck();
+        p.clearHand(testDeck);
+        System.out.println("hand after clearing: " + p.showHand());
+    }
+    */
     
 }   
 
