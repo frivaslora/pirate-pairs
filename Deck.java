@@ -1,13 +1,15 @@
+import java.util.Random;
 import java.util.Arrays;
 
 public class Deck {
-    private int[] cards = new int[55];
-    private int nextCard = 0;
+    private int cards[];
+    private int top;
 
-    private int [] discard = new int[55];
-    private int discardCount = 0;
+    private int [] discard;
+    private int discardCount;
 
     public Deck(){
+        cards = new int[55];
         int index = 0;
         
         for(int number = 1; number <= 10; number++){
@@ -16,12 +18,15 @@ public class Deck {
                 index++;
             }
         }
+        top = 0;
+        discard = new int[55];
+        discardCount = 0;
     }
 
     public void shuffle(){
-        for(int i = 0; i < cards.length; i++){
-            int randomIndex = (int)(Math.random() * cards.length);
-
+        Random rand = new Random();
+        for(int i = 0; i < cards.length ; i++){
+            int randomIndex = rand.nextInt(cards.length);
             int temp = cards[i];
             cards[i] = cards[randomIndex];
             cards[randomIndex] = temp;
@@ -29,11 +34,12 @@ public class Deck {
     }
 
     public int drawCard(){
-        if (nextCard >= cards.length){
-            return -1
+        if (top >= cards.length){
+            shuffle();
+            top = 0;
 ;        }
-        int card = cards[nextCard];
-        nextCard++;
+        int card = cards[top];
+        top++;
         return card;
     }
 
@@ -42,8 +48,13 @@ public class Deck {
         discardCount++;
     }
 
-    public boolean isEmpty(){
-        return nextCard>= cards.length;
+    private void reshuffleDiscard(){
+        for(int i = 0; i < discardCount; i++){
+            cards[i] = discard[i];
+        }
+        top =0;
+        discardCount = 0;
+        shuffle();
     }
 
 }
